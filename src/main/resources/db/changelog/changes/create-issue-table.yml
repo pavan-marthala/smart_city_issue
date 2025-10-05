@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: issue-table-001
+      author: pavan
+      changes:
+        - createTable:
+            tableName: issue
+            columns:
+              - column:
+                  name: id
+                  type: CHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: created_by
+                  type: CHAR(36)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: assigned_by
+                  type: CHAR(36)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: assigned_to
+                  type: CHAR(36)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(50)
+                  defaultValue: 'CREATED'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: etag
+                  type: BIGINT
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: longitude
+                  type: DOUBLE
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: latitude
+                  type: DOUBLE
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
