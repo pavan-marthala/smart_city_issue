@@ -22,6 +22,10 @@ public class IssueController {
     public Flux<Issue> getAll(){
         return issueService.getAll();
     }
+    @GetMapping("/{id}")
+    public Mono<Issue> getById(@PathVariable String id){
+        return issueService.getById(id);
+    }
     @GetMapping("/user")
     public Flux<Issue> getUserIssue(){
         return issueService.getUserIssues();

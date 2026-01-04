@@ -1,5 +1,6 @@
 package com.smartcity.issue.issue;
 
+import com.smartcity.issue.shared.exception.ResourceNotFoundException;
 import com.smartcity.models.Issue;
 import com.smartcity.models.IssueRequest;
 import com.smartcity.models.IssueStatus;
@@ -38,6 +39,13 @@ public class IssueService {
                 .flatMapMany(issueRepository::findAllByAssignedTo)
                 .map(IssueMapper.INSTANCE::toModel);
     }
+    public Mono<Issue> getById(String id){
+        log.info("getting issue by id {}",id);
+        return issueRepository.findById(id)
+                .switchIfEmpty(Mono.error(new ResourceNotFoundException("issue not found with id: "+id)))
+                .map(IssueMapper.INSTANCE::toModel);
+    }
+
 
     public Mono<String> createIssue(IssueRequest issueRequest){
         log.info("creating issue");
